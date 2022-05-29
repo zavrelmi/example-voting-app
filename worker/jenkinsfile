@@ -45,6 +45,12 @@ fingerprint: true
 	post{
 		always{
 			echo 'Building multibranch pipeline for worker is completed..'
-			}
+					}
+		failure{
+		slackSend (channel: "jenkins-testing", message: "Build Failed - $
+		{env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)") }
+		success{
+		slackSend (channel: "jenkins-testing", message: "Build Succeeded -
+		$ {env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)") }
 		}
 }
