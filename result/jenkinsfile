@@ -1,9 +1,10 @@
 pipeline {
 
-	agent any
-
-	tools{
-		nodejs 'NodeJS 8.9.0'
+	agent {
+		docker {
+			image 'node:14.4-alpine3.11'
+			args '-v $HOME/.m2:/root/.m2'
+		}
 	}
 
 	stages{
