@@ -2,7 +2,7 @@ pipeline {
 
 	agent {
 		docker {
-			image 'nodejs:8.9.0-slim'
+			image 'node:14.4-alpine3.11'
 			args '-v $HOME/.m2:/root/.m2'
 		}
 	}
