@@ -1,0 +1,12 @@
+vote:
+  image: zavrelmi/vote:master
+  ports:
+    - 5005:80
+
+result:
+  image: zavrelmi/result:master
+  ports:
+    - 5055:4000
+
+worker:
+  image: zavrelmi/worker:latest
