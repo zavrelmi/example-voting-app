@@ -2,6 +2,8 @@ vote:
   image: zavrelmi/vote:master
   ports:
     - 5005:80
+  links:
+    - redis:redis
 
 redis:
   image: redis:alpine
@@ -13,6 +15,11 @@ result:
   image: zavrelmi/result:master
   ports:
     - 5055:4000
+  links:
+    - db:db
 
 worker:
   image: zavrelmi/worker:latest
+  links:
+    - redis:redis
+    - db:db
