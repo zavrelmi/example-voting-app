@@ -12,36 +12,36 @@ services:
     image: zavrelmi/vote:master
     ports:
       - 5005:80
-  depends_on:
-    - redis
-  networks:
-    - instavote
+    depends_on:
+      - redis
+    networks:
+      - instavote
 
   redis:
     image: redis:alpine
-  networks:
-    - instavote
+    networks:
+      - instavote
 
   db:
     image: postgres:9.4
     volumes:
       - "db-data:/var/lib/postgresql/data/"
-  networks:
-    - instavote
+    networks:
+      - instavote
 
   result:
     image: zavrelmi/result:master
     ports:
       - 5055:4000
-  depends_on:
-    - db
-  networks:
-    - instavote
+    depends_on:
+      - db
+    networks:
+      - instavote
 
   worker:
     image: zavrelmi/worker:latest
-  depends_on:
-    - redis
-    - db
-  networks:
-    - instavote
+    depends_on:
+      - db
+      - redis
+    networks:
+      - instavote
