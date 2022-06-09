@@ -1,25 +1,57 @@
-vote:
-  image: zavrelmi/vote:master
-  ports:
-    - 5005:80
-  links:
-    - redis:redis
+version: "3.7"
 
-redis:
-  image: redis:alpine
+volumes:
+  db-data:
 
-db:
-  image: postgres:9.4
+networks:
+  instavote:
+    driver: bridge
 
-result:
-  image: zavrelmi/result:master
-  ports:
-    - 5055:4000
-  links:
-    - db:db
+services:
+  vote:
+    image: zavrelmi/vote:master
+    ports:
+      - 5005:80
+  depends_on:
+    - redis
+  network:
+    - instavote
 
-worker:
-  image: zavrelmi/worker:latest
-  links:
-    - redis:redis
-    - db:db
+ #   links:
+ #     - redis:redis
+
+  redis:
+    image: redis:alpine
+  network:
+    - instavote
+
+  db:
+    image: postgres:9.4
+    volumes:
+      - "db-data:/var/lib/postgresql/data/"
+  network:
+    - instavote
+
+  result:
+    image: zavrelmi/result:master
+    ports:
+      - 5055:4000
+  depends_on:
+    - db
+  network:
+    - instavote
+
+ #   links:
+ #     - db:db
+
+  worker:
+    image: zavrelmi/worker:latest
+  depends_on:
+    - redis
+    -db
+  network:
+    - instavote
+
+ #   links:
+ #     - redis:redis
+ #     - db:db
