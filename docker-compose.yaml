@@ -3,6 +3,12 @@ vote:
   ports:
     - 5005:80
 
+redis:
+  image: redis:alpine
+
+db:
+  image: postgres:9.4
+
 result:
   image: zavrelmi/result:master
   ports:
