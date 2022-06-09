@@ -14,22 +14,19 @@ services:
       - 5005:80
   depends_on:
     - redis
-  network:
+  networks:
     - instavote
-
- #   links:
- #     - redis:redis
 
   redis:
     image: redis:alpine
-  network:
+  networks:
     - instavote
 
   db:
     image: postgres:9.4
     volumes:
       - "db-data:/var/lib/postgresql/data/"
-  network:
+  networks:
     - instavote
 
   result:
@@ -38,21 +35,13 @@ services:
       - 5055:4000
   depends_on:
     - db
-  network:
+  networks:
     - instavote
-
- #   links:
- #     - db:db
 
   worker:
     image: zavrelmi/worker:latest
   depends_on:
     - redis
     - db
-
-  network:
+  networks:
     - instavote
-
- #   links:
- #     - redis:redis
- #     - db:db
