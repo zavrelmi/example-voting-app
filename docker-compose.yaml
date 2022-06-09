@@ -48,7 +48,8 @@ services:
     image: zavrelmi/worker:latest
   depends_on:
     - redis
-    -db
+    - db
+
   network:
     - instavote
 
