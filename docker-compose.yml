@@ -10,6 +10,7 @@ networks:
 services:
   vote:
     image: zavrelmi/vote:master
+    build: ./vote
     ports:
       - 5005:80
     depends_on:
@@ -33,6 +34,7 @@ services:
 
   result:
     image: zavrelmi/result:master
+    build: ./result
     ports:
       - 5055:4000
     depends_on:
@@ -42,6 +44,7 @@ services:
 
   worker:
     image: zavrelmi/worker:latest
+    build: ./worker
     depends_on:
       - db
       - redis
