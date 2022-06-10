@@ -50,11 +50,4 @@ services:
       - redis
     networks:
       - instavote
-  docker:
-    image: docker:dind
-    ports:
-#      - 2376:2376
-      - 5005:5005
-      - 5055:5055
-    environment:
-      - DOCKER_TLS_CERTDIR=/certs
+      
