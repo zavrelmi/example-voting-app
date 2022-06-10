@@ -194,7 +194,7 @@ pipeline {
 }
         post{
                 always{
-                        echo 'Building multibranch pipeline for worker is completed..'
+                        echo 'Building instavote app is completed..'
                 }
         failure{
         slackSend (channel: "jenkins-testing", message: "Build Failed - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)") }
