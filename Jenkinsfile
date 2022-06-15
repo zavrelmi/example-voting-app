@@ -186,7 +186,8 @@ pipeline {
       agent any
 /*      when{
         branch 'master'
-      } */
+      } 
+*/
       tools {
         jdk "JDK11" // the name you have given the JDK installation in Global Tool Configuration
       }
