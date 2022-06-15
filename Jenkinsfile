@@ -183,8 +183,8 @@ pipeline {
       }
 
     stage('Sonarqube') {
-/*      agent any
-      when{
+      agent any
+/*      when{
         branch 'master'
       } */
       tools {
